@@ -1,0 +1,20 @@
+The PriorityQueue is a data structure that operates similarily to a Queue but it returns objects based on a specific order. When objects are added to this queue, they are located
+in the queue based on their priority. When objects are retrieved from the queue, the queue simply returns the highest or lowest priority element based on which one you ask for.
+
+It implements the IEnumerable and ICloneable interfaces.
+
+USE CASE: Perhaps we have an application or component that needs to send packets of data of differing sizes across a network where the algorithm sends packets based on size. 
+
+The priority queue is designed so that items may be added in any order; but when they are removed from the head or the tail node, they are dequeued in a specific order.
+
+The IComparer type object, a specialComparer, that is passed in through the constructor of the object determines the order. The queued items are stored internally in a field called
+an internalQueue of type ArrayList. Most of the functionality needed for the queue is built into the ArrayList.
+
+ENQUEUE: It accepts a generic as an argument and adds it to the end of the initernalQueue. Next, this ArrayList is sorted accoring to the specialComparer object. If the specialComparer 
+object is null, the comparison defaults to the IComparer of the item. By sorting the ArrayList after each item is added, we do not have to perform a sort before each search, dequeue, and 
+peek method. A small performance hit will occur when an item is added, but this is only a one-time penalty. Keep in mind that when items are removed from the head or tail of the queue, 
+the internal ArrayList does not have to be resorted.
+
+DEQUEUE: These methods remove items from the head (index of 0) of the internalQueue and from the tail (index equals internalQueue.Length). Before returning the string, these
+methods will remove that string from the queue. The Peek methods work in a similar manner, except that they do not remove the string from the queue.
+
